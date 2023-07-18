@@ -4,6 +4,8 @@ import Nav from './components/Nav'
 import './globals.css'
 import type { Metadata } from 'next'
 import { AuthModal } from './components/AuthModal'
+import { SessionProvider } from 'next-auth/react'
+import { ModalProvider } from '@/context/ModalContext'
 
 
 export const metadata: Metadata = {
@@ -13,17 +15,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
 
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
-  
   return (
     <html lang="en">
       <body className='h-screen bg-white dark:bg-slate-900'>
-          <Nav openModal={openModal}/>
-          {children}
-          <AuthModal show={showModal} onClose={closeModal}/>
+        <SessionProvider>
+          <ModalProvider>
+            <Nav/>
+            {children}
+            <AuthModal/>
+          </ModalProvider>
+        </SessionProvider>
         </body>
     </html>
   )

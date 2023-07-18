@@ -5,17 +5,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import { useModal } from '@/context/ModalContext';
+import { useRouter } from 'next/navigation';
 
 
-interface AuthModalProps {
-  show: boolean;
-  onClose: () => void;
-}
-
-export function AuthModal({ show = false, onClose }: AuthModalProps): React.ReactNode {
+export function AuthModal() {
     const [disabled, setDisabled] = useState(false);
-    const [showConfirm, setConfirm] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);
+
+    const {showModal, closeModal} = useModal();
+    const router = useRouter();
 
     useEffect(() => {
         toast.dismiss();
@@ -23,32 +22,41 @@ export function AuthModal({ show = false, onClose }: AuthModalProps): React.Reac
 
 
     const signInWithGoogle = () => {
-        toast.loading('Redirecting...');
+        toast.loading('Signin in...');
         setDisabled(true);
         // Perform sign in
-        signIn('google', {
-            callbackUrl: window.location.href,
-        });
+        try{
+            signIn('google', {
+                callbackUrl: '/dashboard',
+            });
+        }catch(err : any){
+            console.log(err.message);
+        }
     };
 
-
-    const closeModal = () => {
-        if (typeof onClose === 'function') {
-        onClose();
+    const signInWithGithub = async () => {
+        toast.loading('Signin in...');
+        setDisabled(true);
+        // Perform sign in
+        try{
+            await signIn('github', {callbackUrl: 'http://localhost:3000/dashboard'});
+            // router.replace('/dashboard')
+        }catch(err: any){
+            console.log(err.message);
         }
     };
 
 
     return (
-    <div className={`fixed inset-0 z-50 overflow-y-auto ${show ? 'visible' : 'hidden'}`}>
+    <div className={`fixed inset-0 z-50 overflow-y-auto ${showModal ? 'visible' : 'hidden'}`}>
       <div className="fixed inset-0 bg-black opacity-75" />
 
       <div className="min-h-screen text-center">
         <div className="fixed inset-0">
-          <div className="inline-block h-screen align-middle" aria-hidden="true">
+          <div className="inline-block h-screen align-middle" >
             &#8203;
           </div>
-          <div className="inline-block w-full my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl sm:rounded-md max-w-md relative">
+          <div className="w-[90%] md:w-full inline-block my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-md max-w-md relative">
             {/* Close icon */}
             <button
               onClick={closeModal}
@@ -96,7 +104,7 @@ export function AuthModal({ show = false, onClose }: AuthModalProps): React.Reac
                   {/* Sign with Github */}
                   <button
                     disabled={disabled}
-                    onClick={signInWithGoogle}
+                    onClick={signInWithGithub}
                     className="h-[46px] w-full mx-auto mb-5 border rounded-md p-2 flex justify-center items-center space-x-2 text-gray-500 hover:text-gray-600 hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-opacity-25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-gray-500 disabled:hover:bg-transparent disabled:hover:border-gray-200 transition-colors"
                   >
                     <Image
@@ -134,17 +142,9 @@ export function AuthModal({ show = false, onClose }: AuthModalProps): React.Reac
                         >
                           Log in
                         </button>
-                        .
                       </>
                     )}
                   </p>
-
-                  {/* Confirm component */}
-                  {showConfirm && (
-                    <div>
-                      {/* Add your Confirm component code here */}
-                    </div>
-                  )}
                 </div>
               </div>
             </div>

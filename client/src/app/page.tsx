@@ -1,11 +1,19 @@
+"use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import Router from 'next/router'
 import { BsArrowRight } from "react-icons/bs"
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation';
+import { useModal } from '@/context/ModalContext'
+
 
 export default function Home() {
-  //session
-  const session = true
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  const {openModal} = useModal();
+
+
 
   return (
     <main className="h-screen flex items-start md:items-center justify-center overflow-x-hidden">
@@ -29,25 +37,19 @@ export default function Home() {
               Documentation
             </Link>
 
-            <Link
-                  href='/dashboard'
-                  className='w-fit bg-slate-900 dark:bg-white text-white dark:text-black font-medium px-5 py-2 rounded-lg'>
-                  See your API key's
-                  <BsArrowRight className='inline ml-2' />
-            </Link>
-{/* 
-             <button
-                  onClick={() => {
-                    session?.user ? router.push('/dashboard') : openModal();
+             <button className='w-fit bg-slate-900 dark:bg-white text-white dark:text-black font-medium px-5 py-2 rounded-lg'
+                onClick={() => { session?.user ? router.push('/dashboard') : openModal();
                   }}
-                > go further
-                </button> */}
+                >
+                See your API key's
+                <BsArrowRight className='inline ml-2' />
+              </button>
           </div>
           
         </div>
       
         <Image
-          src='/next.svg'
+          src='/images/hero.png'
           alt='Sentiment API'
           quality={100}
           height={500}
