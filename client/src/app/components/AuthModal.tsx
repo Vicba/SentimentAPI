@@ -30,7 +30,7 @@ export function AuthModal() {
                 callbackUrl: '/dashboard',
             });
         }catch(err : any){
-            console.log(err.message);
+            toast.error(err.message);
         }
     };
 
@@ -40,9 +40,8 @@ export function AuthModal() {
         // Perform sign in
         try{
             await signIn('github', {callbackUrl: 'http://localhost:3000/dashboard'});
-            // router.replace('/dashboard')
         }catch(err: any){
-            console.log(err.message);
+            toast.error(err.message);
         }
     };
 

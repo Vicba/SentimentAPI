@@ -28,7 +28,7 @@ export default function KeysTable({ keys, handleDelete }: KeysTableProps) {
   };
 
   return (
-    <div className='w-full md:w-2/3'>
+    <div className='w-full lg:w-2/3'>
       <table className='w-full'>
         <thead className='text-left pb-10'>
           <tr>
@@ -37,7 +37,7 @@ export default function KeysTable({ keys, handleDelete }: KeysTableProps) {
         </thead>
         <tbody>
           {keys.map((keyItem) => (
-            <tr key={keyItem.id} className='border-b-slate-300 dark:border-b-gray-200 border-b-2 dark:border-opacity-60 opacity-70 flex justify-between'>
+            <tr key={keyItem.id} className='border-b-slate-300 dark:border-b-gray-200 border-b-2 dark:border-opacity-60 border-opacity-60 flex justify-between'>
               <td className='py-3 flex items-center'>
                 <div className='flex items-center'>
                   {showFullKey === keyItem.id ? keyItem.key : `${keyItem.key.substring(0, keyItem.key.length / 2)}...`}
@@ -73,7 +73,7 @@ export default function KeysTable({ keys, handleDelete }: KeysTableProps) {
                   height={20}
                   width={20}
                   className='ml-2 text-red-500'
-                  strokeWidth={3}
+                  strokeWidth={8}
                   onClick={() => handleDelete(keyItem.id)}
                 />
               </td>

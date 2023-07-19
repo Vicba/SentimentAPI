@@ -49,7 +49,7 @@ export default function Dashboard() {
         const keys = response.data;
         setKeys(keys);
       } catch (error: any) {
-        console.log(error.message);
+        console.log(error);
       }
     };
     fetchKeys();
