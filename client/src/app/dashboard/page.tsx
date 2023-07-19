@@ -22,7 +22,11 @@ export default function Dashboard() {
       await axios.post('/api/apikey/create')
       toast.success('API key generated successfully')
     } catch (error: any) {
-      toast.error(error.message)
+      if(error.response.status === 403) { 
+        toast.error('You have reached the maximum number of API keys')
+      }else{
+        toast.error(error.message)
+      }
     }
   }
 

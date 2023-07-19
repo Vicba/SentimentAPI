@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import { AuthModal } from './components/AuthModal'
 import { SessionProvider } from 'next-auth/react'
 import { ModalProvider } from '@/context/ModalContext'
+import { Toaster } from 'react-hot-toast'
 
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <Nav/>
             {children}
             <AuthModal/>
+            <Toaster/>
           </ModalProvider>
         </SessionProvider>
         </body>
