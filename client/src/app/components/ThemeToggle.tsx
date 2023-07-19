@@ -19,7 +19,7 @@ export default function ThemeToggle() {
 
         }
 
-    }, [])
+    }, [theme])
 
 
     const toggleTheme = (theme: string) => {
