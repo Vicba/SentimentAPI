@@ -41,7 +41,7 @@ export default function Home() {
                 onClick={() => { session?.user ? router.push('/dashboard') : openModal();
                   }}
                 >
-                See your API key's
+                See your API keys
                 <BsArrowRight className='inline ml-2' />
               </button>
           </div>

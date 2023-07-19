@@ -25,7 +25,7 @@ export default function Nav() {
                     <div className='hidden md:flex'>
                         <ThemeToggle />
                     </div>
-                    <Link href='/docs' className='hidden md:flex'>
+                    <Link href='https://app.theneo.io/myself/test-2'target='_blank' className='hidden md:flex'>
                         Docs
                     </Link>
 
