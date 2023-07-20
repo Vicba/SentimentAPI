@@ -1,60 +1,61 @@
-import React, { ReactNode, useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast';
-import {signIn} from 'next-auth/react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { ReactNode, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
 
-import { XMarkIcon } from '@heroicons/react/24/solid';
-import { useModal } from '@/context/ModalContext';
-import { useRouter } from 'next/navigation';
-
+import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useModal } from "@/context/ModalContext";
+import { useRouter } from "next/navigation";
 
 export function AuthModal() {
-    const [disabled, setDisabled] = useState(false);
-    const [showSignIn, setShowSignIn] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
 
-    const {showModal, closeModal} = useModal();
-    const router = useRouter();
+  const { showModal, closeModal } = useModal();
+  const router = useRouter();
 
-    useEffect(() => {
-        toast.dismiss();
-    }, []);
+  useEffect(() => {
+    toast.dismiss();
+  }, []);
 
+  const signInWithGoogle = () => {
+    toast.loading("Signin in...");
+    setDisabled(true);
+    // Perform sign in
+    try {
+      signIn("google", {
+        callbackUrl: "/dashboard",
+      });
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
 
-    const signInWithGoogle = () => {
-        toast.loading('Signin in...');
-        setDisabled(true);
-        // Perform sign in
-        try{
-            signIn('google', {
-                callbackUrl: '/dashboard',
-            });
-        }catch(err : any){
-            toast.error(err.message);
-        }
-    };
+  const signInWithGithub = async () => {
+    toast.loading("Signin in...");
+    setDisabled(true);
+    // Perform sign in
+    try {
+      await signIn("github", {
+        callbackUrl: "http://localhost:3000/dashboard",
+      });
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
 
-    const signInWithGithub = async () => {
-        toast.loading('Signin in...');
-        setDisabled(true);
-        // Perform sign in
-        try{
-            await signIn('github', {callbackUrl: 'http://localhost:3000/dashboard'});
-        }catch(err: any){
-            toast.error(err.message);
-        }
-    };
-
-
-    return (
-    <div className={`fixed inset-0 z-50 overflow-y-auto ${showModal ? 'visible' : 'hidden'}`}>
+  return (
+    <div
+      className={`fixed inset-0 z-50 overflow-y-auto ${
+        showModal ? "visible" : "hidden"
+      }`}
+    >
       <div className="fixed inset-0 bg-black opacity-75" />
 
       <div className="min-h-screen text-center">
         <div className="fixed inset-0">
-          <div className="inline-block h-screen align-middle" >
-            &#8203;
-          </div>
+          <div className="inline-block h-screen align-middle">&#8203;</div>
           <div className="w-[90%] md:w-full inline-block my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-md max-w-md relative">
             {/* Close icon */}
             <button
@@ -68,19 +69,20 @@ export function AuthModal() {
               <div className="px-4 sm:px-12">
                 <div className="flex justify-center">
                   <Link href="/" className="flex items-center space-x-1">
-                      <span className="text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-yellow-400">
-                        SentimentAPI
-                      </span>
+                    <span className="text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-yellow-400">
+                      SentimentAPI
+                    </span>
                   </Link>
                 </div>
 
                 <h3 className="mt-6 font-bold text-lg sm:text-2xl text-center">
-                  {showSignIn ? 'Welcome back!' : 'Create your account'}
+                  {showSignIn ? "Welcome back!" : "Create your account"}
                 </h3>
 
                 {!showSignIn ? (
                   <p className="mt-2 text-gray-500 text-base text-center">
-                    Please create an account to list create and manage your API keys.
+                    Please create an account to list create and manage your API
+                    keys.
                   </p>
                 ) : null}
 
@@ -97,7 +99,7 @@ export function AuthModal() {
                       width={32}
                       height={32}
                     />
-                    <span>Sign {showSignIn ? 'in' : 'up'} with Google</span>
+                    <span>Sign {showSignIn ? "in" : "up"} with Google</span>
                   </button>
 
                   {/* Sign with Github */}
@@ -112,14 +114,13 @@ export function AuthModal() {
                       width={32}
                       height={32}
                     />
-                    <span>Sign {showSignIn ? 'in' : 'up'} with GitHub</span>
+                    <span>Sign {showSignIn ? "in" : "up"} with GitHub</span>
                   </button>
-
 
                   <p className="mt-2 text-center text-sm text-gray-500">
                     {showSignIn ? (
                       <>
-                        Don&apos;t have an account yet?{' '}
+                        Don&apos;t have an account yet?{" "}
                         <button
                           type="button"
                           disabled={disabled}
@@ -132,7 +133,7 @@ export function AuthModal() {
                       </>
                     ) : (
                       <>
-                        Already have an account?{' '}
+                        Already have an account?{" "}
                         <button
                           type="button"
                           disabled={disabled}

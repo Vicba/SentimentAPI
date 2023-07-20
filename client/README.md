@@ -21,3 +21,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## TODOS
 - fix npm run start bugs
 - dockerfile: .dockerignore, dockerfile, building image, compose file
+- adding more types everywhere

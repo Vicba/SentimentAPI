@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, FC } from 'react';
+import { createContext, useContext, useState } from "react";
 
 interface ModalContextType {
   showModal: boolean;
@@ -11,12 +11,12 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 export function useModal() {
   const context = useContext(ModalContext);
   if (!context) {
-    throw new Error('useModal must be used within a ModalProvider');
+    throw new Error("useModal must be used within a ModalProvider");
   }
   return context;
 }
 
-export const ModalProvider = ({ children } : {children: React.ReactNode}) => {
+export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => setShowModal(true);
