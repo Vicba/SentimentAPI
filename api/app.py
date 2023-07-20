@@ -12,23 +12,23 @@ def binary_sentiment():
     request_data = request.get_json()
     text = request_data["text"]
 
-    return jsonify({"sentiment": "positive"}, {"text": text})
+    return jsonify({"text": text, "sentiment": "positive"})
 
 
 ## binary sentiment endpoints
-@app.route("/fine-grained", methods=["POST"])
+@app.route("/fine-grained-sentiment", methods=["POST"])
 def fine_grained():
     request_data = request.get_json()
     text = request_data["text"]
 
-    return jsonify({"sentiment": "positive"}, {"text": text})
+    return jsonify({"text": text, "sentiment": "neutral"})
 
 
 ## Emotions endpoints
 
 
 # get emotions
-@app.route("/getEmotions", methods=["GET"])
+@app.route("/get-all-emotions", methods=["GET"])
 def get_emotions():
     return jsonify(
         {"emotions": ["happy", "sad", "angry", "fearful", "disgusted", "surprised"]}
@@ -36,7 +36,7 @@ def get_emotions():
 
 
 # get emotions from text
-@app.route("/getEmotionsFromText", methods=["POST"])
+@app.route("/get-emotions", methods=["POST"])
 def get_emotions_from_text():
     request_data = request.get_json()
     text = request_data["text"]
