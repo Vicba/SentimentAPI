@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
 from middleware import check_auth_token, add_cors_headers
-from prisma import Prisma, register, Client
 
 
 app = Flask(__name__)
 
 
 app.before_request(check_auth_token)
+app.after_request(add_cors_headers)
 # USAGE OF uWSGI ?????????????????????
 
 
