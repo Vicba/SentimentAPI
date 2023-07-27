@@ -11,5 +11,6 @@ SEE this example api docs for the expected results!
 DENIS: fix api folder with docker, see readme api for setup
 NAVIGATE TO /API folder before editing
 
-[Client readme](/api/README.md)
-[Server readme](/client/README.md)
+[Client readme](/client/README.md)
+
+[Server readme](/api/README.md)
