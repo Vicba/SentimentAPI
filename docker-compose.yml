@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  api:
+    build: ./api  # Path to the directory containing the Flask app (Dockerfile)
+    ports:
+      - "8080:8080"  # Map host port 8080 to container port 8080

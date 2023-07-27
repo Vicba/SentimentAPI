@@ -1,6 +1,8 @@
 from flask import request, jsonify
 from prisma import Prisma
 
+prisma = Prisma()
+
 
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
