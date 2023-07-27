@@ -1,8 +1,10 @@
 ## Flask API
 activate venv
 `venv\Scripts\activate`
+
 install requirements
 `pip install -r requirements.txt`
+
 start api
 `python app.py`
 
@@ -10,7 +12,8 @@ start api
 ## make ENV
 use my existing db:
 DATABASE_URL="postgresql://postgres:WZo1gKjmkZ2gr6DEvJ4g@containers-us-west-21.railway.app:7197/railway"
-run:  prisma generate
+
+Run:  prisma generate
 
 
 ## todos
@@ -20,12 +23,16 @@ run:  prisma generate
 
 
 ## the middleware checks if there is an API key
-Test API keys: 30TjnVQcgSERLNRgpXJLf , iRXAy75GDtz8vMdOwpJ1V
+Test API keys: (header key: API-Key)
+
+- 30TjnVQcgSERLNRgpXJLf 
+- iRXAy75GDtz8vMdOwpJ1V
 
 test endpoints in Postman on:
 http://127.0.0.1:8080/...
 
 
-## is problems with prisma 
+## Problems with prisma 
 do : `prisma generate`
+
 otherwise just delete the line in app.py where you use the middleware
