@@ -12,6 +12,7 @@ nltk = "*"
 tensorflow = "*"
 matplotlib = "*"
 python-dotenv = "*"
+transformers = "*"
 
 [dev-packages]
 
