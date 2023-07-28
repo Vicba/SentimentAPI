@@ -11,6 +11,7 @@ scikit-learn = "*"
 nltk = "*"
 tensorflow = "*"
 matplotlib = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
