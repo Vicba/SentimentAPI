@@ -4,14 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-ipykernel = "*"
-pandas = "*"
-numpy = "*"
-scikit-learn = "*"
+flask = "*"
 nltk = "*"
-tensorflow = "*"
-matplotlib = "*"
+prisma = "*"
+scikit-learn = "*"
 transformers = "*"
+tensorflow = "*"
 
 [dev-packages]
 

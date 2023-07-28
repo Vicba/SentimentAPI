@@ -1,60 +1,44 @@
 from flask import Flask, jsonify, request
-from middleware import check_auth_token, add_cors_headers
+from sentiment_utils import get_binary_sentiment, get_fine_grained_sentiment, get_all_emotions, get_emotions, binary_fine_grained_model, count_vect, tfidf_transformer, label_encoder
+# from middleware import check_auth_token, add_cors_headers
 
 
 app = Flask(__name__)
 
-
+"""
 app.before_request(check_auth_token)
 app.after_request(add_cors_headers)
 # USAGE OF uWSGI ?????????????????????
+"""
 
-
-## binary sentiment endpoints
 @app.route("/binary-sentiment", methods=["POST"])
 def binary_sentiment():
-    request_data = request.get_json()
-    text = request_data["text"]
+	text = request.get_json()["text"]
+        
+	result = get_binary_sentiment(text=text, language="english", minWordLength=2, model=binary_fine_grained_model, count_vect=count_vect, tfidf_transformer=tfidf_transformer, label_encoder=label_encoder)
 
-    return jsonify({"text": text, "sentiment": "positive"})
+	return jsonify(result)
 
 
-## binary sentiment endpoints
 @app.route("/fine-grained-sentiment", methods=["POST"])
-def fine_grained():
-    request_data = request.get_json()
-    text = request_data["text"]
+def fine_grained_sentiment():
+	text = request.get_json()["text"]
+      
+	result = get_fine_grained_sentiment(text=text, language="english", minWordLength=2, model=binary_fine_grained_model, count_vect=count_vect, tfidf_transformer=tfidf_transformer, label_encoder=label_encoder)
 
-    return jsonify({"text": text, "sentiment": "neutral"})
-
-
-## Emotions endpoints
+	return jsonify(result)
 
 
-# get emotions
-@app.route("/get-all-emotions", methods=["GET"])
-def get_emotions():
-    return jsonify(
-        {"emotions": ["happy", "sad", "angry", "fearful", "disgusted", "surprised"]}
-    )
-
-
-# get emotions from text
 @app.route("/get-emotions", methods=["POST"])
-def get_emotions_from_text():
-    request_data = request.get_json()
-    text = request_data["text"]
+def emotions():
+	text = request.get_json()["text"]
+	result = get_emotions(text=text)
+	return jsonify(result)
 
-    return jsonify(
-        {
-            "text": text,
-            "emotions": [
-                {"sentiment": "happy", "score": 0.9},
-                {"sentiment": "sad", "score": 0.1},
-            ],
-        }
-    )
 
+@app.route("/get-all-emotions", methods=["GET"])
+def all_emotions():
+	return jsonify(get_all_emotions())
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
