@@ -24,8 +24,6 @@ with open('../server/binary-fine-grained-sentiment/tfidf_transformer.pkl', 'rb')
 
 emotion_classifier = pipeline("text-classification",model='bhadresh-savani/distilbert-base-uncased-emotion', return_all_scores=True)
 
-emotion_prediction = emotion_classifier("I love using transformers. The best part is wide range of support and its easy to use")
-
 
 def text_sentiment_preprocessing(text, language, minWordLength, model, count_vect, tfidf_transformer, label_encoder):
 	preprocessed_text = text_preprocessing(text, language, minWordLength)
@@ -99,6 +97,9 @@ def get_fine_grained_sentiment(text, language, minWordLength, model, count_vect,
 
 def get_emotions(text):
 	emotions = []
+	
+	emotion_prediction = emotion_classifier(text)
+
 	for result in emotion_prediction[0]:
 		emotions.append({
 			"emotion": result["label"],
