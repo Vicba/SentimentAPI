@@ -1,2 +1,6 @@
 flask
+nltk
 prisma
+scikit-learn
+transformers
+tensorflow
