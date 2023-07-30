@@ -34,7 +34,7 @@ export default function Nav() {
             <ThemeToggle />
           </div>
           <Link
-            href="https://app.theneo.io/myself/test-2"
+            href="https://app.theneo.io/myself/sentimentapi"
             target="_blank"
             className="hidden md:flex"
           >

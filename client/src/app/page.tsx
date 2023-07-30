@@ -31,7 +31,10 @@ export default function Home() {
           </p>
 
           <div className="flex flex-row items-center justify-center md:justify-normal gap-5 mt-8">
-            <Link href={"/docs"} className="hover:underline">
+            <Link
+              href={"https://app.theneo.io/myself/sentimentapi"}
+              className="hover:underline"
+            >
               Documentation
             </Link>
 
