@@ -1,38 +1,59 @@
-## Flask API
-activate venv
-`venv\Scripts\activate`
+## 👀 Overview
+This is the api made in flask and notebooks.
+[see API documentation](https://app.theneo.io/myself/sentimentapi)
 
-install requirements
-`pip install -r requirements.txt`
+- [👀 Overview](#-overview)
+- [💫 Setup](#-setup)
+  - [❗Testing the api](#testing-the-api)
+- [🚩 Difficulties](#-difficulties)
 
-start api
-`python app.py`
+## 💫 Setup
+Type the following commands in the command line:
 
+1. Clone this project and go to /api
+   
+   `git clone https://github.com/Vicba/SentimentAPI.git`
 
-## make ENV
-use my existing db:
-DATABASE_URL="postgresql://postgres:WZo1gKjmkZ2gr6DEvJ4g@containers-us-west-21.railway.app:7197/railway"
+    `cd api`
 
-Run:  prisma generate
+2. Create virtual environment
 
+For linux/mac: `python -m venv venv`
 
-## todos
-- error handling like no text in req or other 400 stuff
-- models training add in models if done
-- docker image maken an in docker-compose.yml
-
-
-## the middleware checks if there is an API key
-Test API keys: (header key: API-Key)
-
-- 30TjnVQcgSERLNRgpXJLf 
-- iRXAy75GDtz8vMdOwpJ1V
-
-test endpoints in Postman on:
-http://127.0.0.1:8080/...
+For windows: `python -m venv venv`
 
 
-## Problems with prisma 
-do : `prisma generate`
+3. Activate virtual environment (venv)
 
-otherwise just delete the line in app.py where you use the middleware
+For linux/mac: `source venv/bin/activate`
+
+For windows: `venv\Scripts\activate`
+
+   
+4. Install requirements
+   
+    `pip install -r requirements.txt`
+
+5. Setup prisma
+   
+    `prisma generate`
+
+6. Start project
+   
+    `python app.py`
+
+7. To stop the project
+   
+   `deactivate`
+
+
+### ❗Testing the api
+Test the endpoints with your created api keys from the client
+
+Auhtorization headers: API-Key: your-api key
+
+endpoint: http://127.0.0.1:8080/your-endpoint-choice
+
+
+## 🚩 Difficulties
+- Docker build and run works but when hit sentiment endpoint: "nltk error"

@@ -1,6 +1,7 @@
-flask
+flask[async]
 nltk
 prisma
 scikit-learn
 transformers
 tensorflow
+gunicorn

@@ -1,20 +1,25 @@
-# Use the official Python image as the base image
-FROM python:3.9
+FROM python:latest
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the Prisma schema and Flask app code into the container
-COPY prisma app.py middleware.py requirements.txt /app/
+# Copy the requirements file into the container
+COPY requirements.txt .
 
-# Install the required dependencies for the Flask app
-RUN pip install -r requirements.txt
+# Create a virtual environment and activate it
+RUN python -m venv venv
+RUN . venv/bin/activate
 
-# Generate the Prisma client
+# Install the Python dependencies from the requirements file
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the Flask app source code into the container
+COPY . .
+
 RUN prisma generate
 
-# Expose the port that your Flask app runs on (replace 8080 with your desired port if different)
+# Expose the port the Flask app will run on
 EXPOSE 8080
 
-# Start the Flask app when the container starts
+# Command to run the Flask app
 CMD ["python", "app.py"]

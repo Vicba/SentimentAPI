@@ -1,24 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 👀 Overview
+This is a nextjs and next-auth project where the user can signin or register and create a max amount of 3 api keys.
 
-## Getting Started
+- [👀 Overview](#-overview)
+- [💫 Setup](#-setup)
+- [🚩 Difficulties](#-difficulties)
 
-First, run the development server:
+## 💫 Setup
+Type the following commands in the command line:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone this project and go to /api
+   
+   `git clone https://github.com/Vicba/SentimentAPI.git`
+
+    `cd client`
+
+2. Install dependecies
+
+    `npm install`
+
+3. Run the client
+   
+   `npm run dev`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## TODOS
-- fix npm run start bugs
-- dockerfile: .dockerignore, dockerfile, building image, compose file
-- adding more types everywhere
+## 🚩 Difficulties
+- docker: .dockerignore, dockerfile, building image
