@@ -82,6 +82,7 @@ A quick look at the top-level files and directories.
 - Docker: We used docker before but never with flask and nextjs. It was harder then we thought and didn't get to what we wanted because of some errors while running the container.
 - Nginx: We wanted to use nginx as a reverse proxy with a rate limiter for the api. Unfortunately we couldnt really test this because of our docker.
 - Time management: I myself (victor) who came up with the idea underestimated this project. Especially with the time limit we both had because of work/other vacation activities.
+- NEED TO GET THIS OFF LOCALHOST
 
 ## 🧠 Learnings
 
