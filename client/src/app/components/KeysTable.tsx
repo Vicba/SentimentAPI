@@ -7,13 +7,7 @@ import {
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
-
-interface KeyItem {
-  id: string;
-  key: string;
-  enabled: boolean;
-  userId: string;
-}
+import { KeyItem } from "@/types";
 
 interface KeysTableProps {
   keys: KeyItem[];

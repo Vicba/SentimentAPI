@@ -22,7 +22,7 @@ I made this together with a classmate (Denis) for some days in the last 2 weeks 
 - [🚩 Difficulties](#-difficulties)
 - [🧠 Learnings](#-learnings)
 
-Setup for each service:
+<b>Setup for each service:</b>
 [Client README](/client/README.md)
 [API README](/api/README.md)
 

@@ -6,14 +6,12 @@ import Link from "next/link";
 
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useModal } from "@/context/ModalContext";
-import { useRouter } from "next/navigation";
 
 export function AuthModal() {
-  const [disabled, setDisabled] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(false);
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [showSignIn, setShowSignIn] = useState<boolean>(false);
 
   const { showModal, closeModal } = useModal();
-  const router = useRouter();
 
   useEffect(() => {
     toast.dismiss();

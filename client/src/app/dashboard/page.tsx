@@ -6,6 +6,7 @@ import KeysTable from "../components/KeysTable";
 import { ExclamationTriangleIcon, PlusIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { KeyItem } from "@/types";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function Dashboard() {
       await axios.post("/api/apikey/create");
       toast.success("API key generated successfully");
     } catch (error: any) {
-      if (error.response.status === 403) {
+      if (error.response?.status === 403) {
         toast.error("You have reached the maximum number of API keys");
       } else {
         toast.error(error.message);
@@ -38,7 +39,7 @@ export default function Dashboard() {
     }
   };
 
-  const [keys, setKeys] = useState([]);
+  const [keys, setKeys] = useState<KeyItem[]>([]);
 
   useEffect(() => {
     const fetchKeys = async () => {
